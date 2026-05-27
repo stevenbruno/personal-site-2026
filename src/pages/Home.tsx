@@ -145,7 +145,7 @@ export default function Home() {
                 I originally studied Civil Engineering as I planned to pursue a career in Architecture. Along the way, I discovered my passion for digital product design, and I've pursued this design career ever since.
               </p>
               <p>
-                Currently, I work with an incredibly talented team to help design and build the Spotify mobile app. Previously, I worked a restaurant technology company called Toast. You might see some of their hardware inside your favorite restaurants.
+                Currently, I work with an incredibly talented team to help design and build the Spotify mobile app. I also am a lead course author and instructor for internal Spotify trainings like 'Advanced Prototyping in Figma' and 'Prototyping with Claude Code'. Previously, I worked at a restaurant technology company called Toast. You might see some of their hardware inside your favorite restaurants.
               </p>
               <p>
                 Outside of work, I love to make music and spend as much time outside as possible.
