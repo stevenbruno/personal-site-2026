@@ -55,8 +55,29 @@ export default function Home() {
       ? "font-semibold text-xl text-gray-900 dark:text-white text-right transition-colors duration-150"
       : "font-semibold text-xl text-gray-300 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white text-right transition-colors duration-150";
 
+  const tabItemClass = (active: boolean) =>
+    active
+      ? "font-semibold text-sm text-gray-900 dark:text-white pb-3 border-b-2 border-gray-900 dark:border-white transition-colors duration-150"
+      : "font-semibold text-sm text-gray-300 dark:text-gray-500 pb-3 border-b-2 border-transparent hover:text-gray-900 dark:hover:text-white transition-colors duration-150";
+
   return (
     <div className="bg-white dark:bg-transparent min-h-screen">
+
+      {/* Mobile tab bar — visible on small screens only */}
+      <nav className="md:hidden flex px-6 pt-6">
+        <div className="flex gap-6">
+          <button onClick={() => setView("projects")} className={tabItemClass(view === "projects")}>
+            Projects
+          </button>
+          <button onClick={() => setView("about")} className={tabItemClass(view === "about")}>
+            About
+          </button>
+          <a href="https://soundcloud.com/sbruno636" target="_blank" rel="noopener noreferrer" className={tabItemClass(false)}>
+            Music
+          </a>
+        </div>
+      </nav>
+
       {/* Intro section — bio left, nav right */}
       <section className="max-w-5xl mx-auto px-8 py-24">
         <div className="flex items-start justify-between gap-16">
@@ -67,7 +88,8 @@ export default function Home() {
             <a href="https://pos.toasttab.com/?srsltid=AfmBOopu4InSUsLf1tRH0ZVGSpGD7Tb3BAysJlnO2_3v4gq98dTEPtJz" target="_blank" rel="noopener noreferrer" className="hover:text-[#ff4c01] transition-colors duration-150">Toast</a>.
           </p>
 
-          <nav className="flex flex-col gap-1 shrink-0 text-right">
+          {/* Desktop vertical nav — hidden on mobile */}
+          <nav className="hidden md:flex flex-col gap-1 shrink-0 text-right">
             <button onClick={() => setView("projects")} className={navItemClass(view === "projects")}>
               Projects
             </button>
