@@ -12,6 +12,7 @@ const projects: {
   phoneContainerHeight?: string;
   phoneHeight?: string;
   confidential?: boolean;
+  imageShadow?: boolean;
 }[] = [
   {
     id: 1,
@@ -56,6 +57,7 @@ const projects: {
       { src: "/images/duplication502.png", type: "phone" },
     ],
     columns: 2,
+    imageShadow: true,
   },
   {
     id: 5,
@@ -206,7 +208,7 @@ export default function Home() {
                                 <img
                                   src={img.src}
                                   alt=""
-                                  className={`${project.phoneHeight ?? "h-[666px]"} max-w-full object-contain${img.small ? " scale-[0.6]" : ""}`}
+                                  className={`${project.phoneHeight ?? "h-[666px]"} max-w-full object-contain${img.small ? " scale-[0.6]" : ""}${project.imageShadow ? " [filter:drop-shadow(0_12px_16px_rgba(0,0,0,0.55))]" : ""}`}
                                 />
                               </div>
                             )
