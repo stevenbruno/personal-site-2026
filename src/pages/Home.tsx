@@ -84,6 +84,10 @@ export default function Home() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  useEffect(() => {
+    document.body.classList.toggle("lightbox-open", !!lightboxSrc);
+  }, [lightboxSrc]);
+
   const navItemClass = (active: boolean) =>
     active
       ? "font-semibold text-xl text-[#E8735A] dark:text-[#E8729A] text-right transition-colors duration-150"
@@ -113,7 +117,7 @@ export default function Home() {
       </nav>
 
       {/* Intro section — bio left, nav right */}
-      <section className="max-w-[1080px] mx-auto px-8 pt-48 pb-24">
+      <section className="max-w-[1180px] mx-auto px-8 pt-48 pb-24">
         <div className="flex items-start gap-16">
           {view === "projects" && (
             <p className="text-lg leading-relaxed text-gray-900 dark:text-white max-w-[500px] mr-auto">
@@ -152,7 +156,7 @@ export default function Home() {
       {view === "projects" ? (
         projects.map((project) => (
           <section key={project.id} className="border-t border-gray-200 dark:border-gray-800">
-            <div className="max-w-[1080px] mx-auto px-8 py-20">
+            <div className="max-w-[1180px] mx-auto px-8 py-24">
               <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
                 {/* Left: title + description — sticky on desktop */}
                 <div className="shrink-0 md:w-1/3 md:sticky md:top-16">
@@ -221,7 +225,7 @@ export default function Home() {
       {/* Lightbox overlay */}
       {lightboxSrc && (
         <div
-          className="fixed inset-0 z-50 bg-black/85 flex items-center justify-center p-8"
+          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-8"
           onClick={() => setLightboxSrc(null)}
         >
           <button
