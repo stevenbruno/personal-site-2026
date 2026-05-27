@@ -53,12 +53,12 @@ export default function Home() {
   const navItemClass = (active: boolean) =>
     active
       ? "font-semibold text-xl text-gray-900 dark:text-white text-right transition-colors duration-150"
-      : "font-semibold text-xl text-gray-300 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white text-right transition-colors duration-150";
+      : "font-semibold text-xl text-gray-400 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white text-right transition-colors duration-150";
 
   const tabItemClass = (active: boolean) =>
     active
       ? "font-semibold text-sm text-gray-900 dark:text-white pb-3 border-b-2 border-gray-900 dark:border-white transition-colors duration-150"
-      : "font-semibold text-sm text-gray-300 dark:text-gray-500 pb-3 border-b-2 border-transparent hover:text-gray-900 dark:hover:text-white transition-colors duration-150";
+      : "font-semibold text-sm text-gray-400 dark:text-gray-500 pb-3 border-b-2 border-transparent hover:text-gray-900 dark:hover:text-white transition-colors duration-150";
 
   return (
     <div className="bg-white dark:bg-transparent min-h-screen">
