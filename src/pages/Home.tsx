@@ -5,7 +5,7 @@ type ProjectImage = { src: string; type: "full" | "phone"; small?: boolean; zoom
 const projects: {
   id: number;
   title: string;
-  description: string;
+  description: string | string[];
   images: ProjectImage[];
   placeholderCount?: number;
   columns?: number;
@@ -16,8 +16,10 @@ const projects: {
   {
     id: 1,
     title: "Spotify Smart Search Filters",
-    description:
-      "As Spotify expanded it's content offerings, we needed a new way to enable users to more efficiently find content that fit whatever niche they might be seeking. In this code-first design project, I used Claude Code to define a new advanced filtering tool for Spotify Search.",
+    description: [
+      "As Spotify expanded it's content offerings, we needed a new way to enable users to more efficiently find content that fit whatever niche they might be seeking.",
+      "In this code-first design project, I used Claude Code to define a new advanced filtering tool for Spotify Search.",
+    ],
     images: [
       { src: "/images/filters1.png", type: "full", uncropped: true },
       { src: "/images/filters2.png", type: "full", uncropped: true },
@@ -26,23 +28,29 @@ const projects: {
   {
     id: 2,
     title: "Spotify Agentic Search",
-    description:
-      "I co-lead the design of the future of agentic search within Spotify. This is a confidential project. A case can be made available upon request.",
+    description: [
+      "I co-lead the design of the future of agentic search within Spotify.",
+      "This is a confidential project. A case can be made available upon request.",
+    ],
     images: [{ src: "/images/confidential.png", type: "phone" }],
     phoneContainerHeight: "h-[520px]",
   },
   {
     id: 3,
     title: "Spotify Agent Conversation Analysis",
-    description:
-      "I led the design of an internal tool that allows Spotify teammates to better understand why and how external users converse with the new Spotify conversational DJ. I built this site with Claude Code using React and Typescript.",
+    description: [
+      "I led the design of an internal tool that allows Spotify teammates to better understand why and how external users converse with the new Spotify conversational DJ.",
+      "I built this site with Claude Code using React and Typescript.",
+    ],
     images: [{ src: "/images/convoanalysis.png", type: "full", uncropped: true }],
   },
   {
     id: 4,
     title: "Spotify Track Deduplication",
-    description:
-      "I led the design of a feature in the Spotify mobile app that aims to declutter search results by deduplicating similar recordings of a single song. I also led multiple rounds of user research to inform the designs.",
+    description: [
+      "I led the design of a feature in the Spotify mobile app that aims to declutter search results by deduplicating similar recordings of a single song.",
+      "I also led multiple rounds of user research to inform the designs.",
+    ],
     images: [
       { src: "/images/duplication501.png", type: "phone" },
       { src: "/images/duplication502.png", type: "phone" },
@@ -52,15 +60,19 @@ const projects: {
   {
     id: 5,
     title: "Spotify x Motorola Razr Cover Screen",
-    description:
-      "In 2024, Motorola planned to launch a larger Motorola Razr device. With that release, Spotify and Motorola partnered to deliver a new Spotify experience for the cover screen (the screen you see while the phone is folded closed). In this project, I led the design of the new UI that brought a new layout and new Spotify features to the cover screen like DJ mode and a new queue.",
+    description: [
+      "In 2024, Motorola planned to launch a larger Motorola Razr device. With that release, Spotify and Motorola partnered to deliver a new Spotify experience for the cover screen (the screen you see while the phone is folded closed).",
+      "In this project, I led the design of the new UI that brought a new layout and new Spotify features to the cover screen like DJ mode and a new queue.",
+    ],
     images: [{ src: "/images/razr.png", type: "phone" }],
   },
   {
     id: 6,
     title: "MyToast Mobile App",
-    description:
-      "I was the lead designer for the first version of Toast's first mobile app for iOS and Android called MyToast. The app enabled restaurant employees to get access to their paychecks earlier than normal. With help from the design system team and other visual designers, I designed almost the entire app - onboarding flows, withdrawal flows, paycheck visualizations, settings, legal disclaimers, and even app store marketing assets. Today, the app has 4.7 stars on the Apple App Store.",
+    description: [
+      "I was the lead designer for the first version of Toast's first mobile app for iOS and Android called MyToast. The app enabled restaurant employees to get access to their paychecks earlier than normal. As the first designer, I designed onboarding flows, withdrawal flows, paycheck visualizations, settings, legal disclaimers, and even app store marketing assets.",
+      "Today, the app has 4.7 stars on the Apple App Store.",
+    ],
     images: [
       { src: "/images/mytoast2.png", type: "phone" },
       { src: "/images/mytoast3.png", type: "phone" },
@@ -68,7 +80,7 @@ const projects: {
       { src: "/images/mytoast1.png", type: "phone" },
     ],
     columns: 2,
-    phoneHeight: "h-[620px]",
+    phoneHeight: "max-h-[620px] w-auto",
   },
 ];
 
@@ -161,9 +173,15 @@ export default function Home() {
                 {/* Left: title + description — sticky on desktop */}
                 <div className="shrink-0 md:w-1/3 md:sticky md:top-16">
                   <h2 className="font-bold text-sm mb-3">{project.title}</h2>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                    {project.description}
-                  </p>
+                  {Array.isArray(project.description) ? (
+                    <div className="flex flex-col gap-3">
+                      {project.description.map((para, i) => (
+                        <p key={i} className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{para}</p>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{project.description}</p>
+                  )}
                 </div>
 
                 {/* Right: images or gray placeholders */}
@@ -178,7 +196,7 @@ export default function Home() {
                       // Pair up images onto a shared gray background
                       const chunks: (ProjectImage | null)[][] = [];
                       for (let i = 0; i < items.length; i += 2) chunks.push(items.slice(i, i + 2));
-                      return chunks.map((chunk, ci) => (
+                      return <div className="flex flex-col gap-2">{chunks.map((chunk, ci) => (
                         <div key={ci} className="rounded-2xl w-full flex flex-row items-center justify-center px-8 gap-6">
                           {chunk.map((img, ii) =>
                             img === null ? (
@@ -194,7 +212,7 @@ export default function Home() {
                             )
                           )}
                         </div>
-                      ));
+                      ))}</div>;
                     }
 
                     // Default: one image per row
