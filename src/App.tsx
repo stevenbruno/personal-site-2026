@@ -32,23 +32,21 @@ function Layout() {
   return (
     <div className="min-h-screen bg-white dark:bg-transparent text-gray-900 dark:text-white">
       {!isHome && <Nav />}
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/work" element={<Work />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
-      </main>
 
-      {/* Dark mode toggle */}
-      <button
-        onClick={() => setDark(!dark)}
-        aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-        className="fixed top-5 right-6 z-50 w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-150"
-      >
-        {dark ? (
-          // Sun icon
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      {/* Dark mode toggle — pill switch */}
+      <div className="hidden md:block max-w-5xl mx-auto px-8 pt-5">
+        <div className="flex justify-end">
+        <div
+          onClick={() => setDark(!dark)}
+          role="switch"
+          aria-checked={dark}
+          aria-label="Toggle dark mode"
+          className="flex items-center gap-0.5 p-0.5 rounded-xl bg-gray-200 dark:bg-gray-700 border border-gray-300/40 dark:border-gray-500/40 cursor-pointer transition-colors duration-150"
+        >
+
+        {/* Sun */}
+        <div className={`w-6 h-6 flex items-center justify-center rounded-lg transition-all duration-300 ${!dark ? "bg-white shadow text-gray-900" : "text-gray-600 dark:text-gray-300"}`}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="12" cy="12" r="4" />
             <line x1="12" y1="2" x2="12" y2="4" />
             <line x1="12" y1="20" x2="12" y2="22" />
@@ -59,13 +57,24 @@ function Layout() {
             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
           </svg>
-        ) : (
-          // Moon icon
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        </div>
+        {/* Moon */}
+        <div className={`w-6 h-6 flex items-center justify-center rounded-lg transition-all duration-300 ${dark ? "bg-gray-200 shadow text-gray-900" : "text-gray-600 dark:text-gray-300"}`}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
           </svg>
-        )}
-      </button>
+        </div>
+        </div>
+        </div>
+      </div>
+
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/work" element={<Work />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </main>
 
       {/* Scroll to top */}
       <button
