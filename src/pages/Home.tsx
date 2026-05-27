@@ -80,16 +80,18 @@ export default function Home() {
 
       {/* Intro section — bio left, nav right */}
       <section className="max-w-5xl mx-auto px-8 py-24">
-        <div className="flex items-start justify-between gap-16">
-          <p className="text-lg leading-relaxed text-gray-900 dark:text-white max-w-[500px]">
-            I'm Steven, a product designer with 7 years of experience designing
-            desktop and mobile apps. Currently, I'm helping to design the{" "}
-            Spotify mobile app. Previously, I worked at{" "}
-            <a href="https://pos.toasttab.com/?srsltid=AfmBOopu4InSUsLf1tRH0ZVGSpGD7Tb3BAysJlnO2_3v4gq98dTEPtJz" target="_blank" rel="noopener noreferrer" className="hover:text-[#ff4c01] transition-colors duration-150">Toast</a>.
-          </p>
+        <div className="flex items-start gap-16">
+          {view !== "about" && (
+            <p className="text-lg leading-relaxed text-gray-900 dark:text-white max-w-[500px] mr-auto">
+              I'm Steven, a product designer with {new Date().getFullYear() - 2019} years of experience designing
+              desktop and mobile apps. Currently, I'm helping to design the{" "}
+              Spotify mobile app. Previously, I worked at{" "}
+              <a href="https://pos.toasttab.com/?srsltid=AfmBOopu4InSUsLf1tRH0ZVGSpGD7Tb3BAysJlnO2_3v4gq98dTEPtJz" target="_blank" rel="noopener noreferrer" className="hover:text-[#ff4c01] transition-colors duration-150">Toast</a>.
+            </p>
+          )}
 
           {/* Desktop vertical nav — hidden on mobile */}
-          <nav className="hidden md:flex flex-col gap-1 shrink-0 text-right">
+          <nav className="hidden md:flex flex-col gap-1 shrink-0 text-right ml-auto">
             <button onClick={() => setView("projects")} className={navItemClass(view === "projects")}>
               Projects
             </button>
@@ -134,10 +136,29 @@ export default function Home() {
         ))
       ) : (
         <section className="border-t border-gray-200 dark:border-gray-800">
-          <div className="max-w-5xl mx-auto px-8 py-20">
-            <p className="text-gray-600 dark:text-gray-400 leading-relaxed max-w-[500px]">
-              Coming soon.
-            </p>
+          <div className="max-w-5xl mx-auto px-8 py-20 flex justify-center">
+            <div className="flex flex-col gap-5 text-gray-600 dark:text-gray-400 leading-relaxed max-w-[500px]">
+              <p>
+                My name is Steven Bruno. I'm a digital product designer that grew up in Los Angeles, studied in Chicago, and am now living in Brooklyn.
+              </p>
+              <p>
+                I originally studied Civil Engineering as I planned to pursue a career in Architecture. Along the way, I discovered my passion for digital product design, and I've pursued this design career ever since.
+              </p>
+              <p>
+                Currently, I work with an incredibly talented team to help design and build the Spotify mobile app. Previously, I worked a restaurant technology company called Toast. You might see some of their hardware inside your favorite restaurants.
+              </p>
+              <p>
+                Outside of work, I love to make music and spend as much time outside as possible.
+              </p>
+              <a
+                href="https://www.linkedin.com/in/stevenjbruno/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-150 text-sm"
+              >
+                LinkedIn →
+              </a>
+            </div>
           </div>
         </section>
       )}
