@@ -106,7 +106,7 @@ function Layout() {
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Scroll to top"
-        className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1.5 px-4 py-2 text-xs font-medium rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200/60 dark:border-gray-700/60 hover:bg-gray-200 dark:hover:bg-gray-700 shadow-sm transition-all duration-300 ${
+        className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1.5 px-4 py-2 text-xs font-medium rounded-full bg-gray-500 dark:bg-gray-200 text-white dark:text-gray-900 border border-gray-500/60 dark:border-gray-200/60 hover:bg-gray-600 dark:hover:bg-gray-100 shadow-md transition-all duration-300 ${
           scrolled ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"
         }`}
       >
