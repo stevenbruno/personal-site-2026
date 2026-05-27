@@ -5,14 +5,40 @@ import Home from "./pages/Home";
 import Work from "./pages/Work";
 import About from "./pages/About";
 
+const DARK_MODE_KEY = "darkModePreference";
+const DARK_MODE_TTL = 4 * 60 * 60 * 1000; // 4 hours in ms
+
+function getSavedDarkMode(): boolean | null {
+  try {
+    const raw = localStorage.getItem(DARK_MODE_KEY);
+    if (!raw) return null;
+    const { value, savedAt } = JSON.parse(raw);
+    if (Date.now() - savedAt > DARK_MODE_TTL) {
+      localStorage.removeItem(DARK_MODE_KEY);
+      return null;
+    }
+    return value as boolean;
+  } catch {
+    return null;
+  }
+}
+
 function useDarkMode() {
-  const [dark, setDark] = useState(
-    () => window.matchMedia("(prefers-color-scheme: dark)").matches
-  );
+  const [dark, setDarkState] = useState<boolean>(() => {
+    const saved = getSavedDarkMode();
+    return saved !== null
+      ? saved
+      : window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
+
+  const setDark = (value: boolean) => {
+    localStorage.setItem(DARK_MODE_KEY, JSON.stringify({ value, savedAt: Date.now() }));
+    setDarkState(value);
+  };
 
   return [dark, setDark] as const;
 }
