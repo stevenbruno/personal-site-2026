@@ -221,7 +221,7 @@ export default function Home() {
                       img === null ? (
                         <div key={i} className={`bg-gray-100 dark:bg-gray-800 rounded-2xl w-full ${aspectClass}`} />
                       ) : img.type === "full" && img.uncropped ? (
-                        <img key={i} src={img.src} alt="" className="w-full h-auto rounded-2xl cursor-pointer" style={{ maskImage: "linear-gradient(to bottom, black calc(100% - 8px), transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, black calc(100% - 8px), transparent 100%)" }} onClick={() => setLightboxSrc(img.src)} />
+                        <img key={i} src={img.src} alt="" className="w-full h-auto rounded-2xl cursor-pointer" style={{ maskImage: "linear-gradient(to right, transparent, black 8px, black calc(100% - 8px), transparent), linear-gradient(to bottom, black calc(100% - 8px), transparent 100%)", WebkitMaskImage: "linear-gradient(to right, transparent, black 8px, black calc(100% - 8px), transparent), linear-gradient(to bottom, black calc(100% - 8px), transparent 100%)", maskComposite: "intersect", WebkitMaskComposite: "source-in" }} onClick={() => setLightboxSrc(img.src)} />
                       ) : img.type === "full" ? (
                         <div key={i} className={`rounded-2xl overflow-hidden w-full ${img.aspect ?? aspectClass} cursor-pointer`} onClick={() => setLightboxSrc(img.src)}>
                           <img src={img.src} alt="" className={`w-full h-full object-cover${img.zoom ? " scale-[1.1]" : ""}`} />
