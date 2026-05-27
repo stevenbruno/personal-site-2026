@@ -154,9 +154,9 @@ export default function Home() {
                 href="https://www.linkedin.com/in/stevenjbruno/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-150 text-sm"
+                className="text-blue-600 dark:text-blue-400 hover:opacity-70 transition-opacity duration-150 text-sm font-medium"
               >
-                LinkedIn →
+                LinkedIn
               </a>
             </div>
           </div>
