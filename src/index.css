@@ -2,11 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Always reserve scrollbar gutter — prevents layout shift when
+   scrollbar appears/disappears between Projects and About views */
+html {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.18) transparent;
+}
+
+/* Thin, elegant scrollbar — light mode (WebKit) */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     background: radial-gradient(ellipse at 62% 75%, #202020 0%, #0d0d0d 70%);
     background-attachment: fixed;
   }
 
+  html {
+    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+  }
 
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
 }
