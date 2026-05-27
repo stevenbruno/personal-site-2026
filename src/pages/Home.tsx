@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const projects = [
   {
     id: 1,
@@ -36,7 +38,16 @@ const projects = [
   },
 ];
 
+type View = "projects" | "about";
+
 export default function Home() {
+  const [view, setView] = useState<View>("projects");
+
+  const navItemClass = (active: boolean) =>
+    active
+      ? "font-semibold text-xl text-gray-900 dark:text-white text-right transition-colors duration-150"
+      : "font-semibold text-xl text-gray-300 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white text-right transition-colors duration-150";
+
   return (
     <div className="bg-white dark:bg-transparent min-h-screen">
       {/* Intro section — bio left, nav right */}
@@ -50,41 +61,57 @@ export default function Home() {
           </p>
 
           <nav className="flex flex-col gap-1 shrink-0 text-right">
-            <span className="font-semibold text-xl text-gray-900 dark:text-white">Projects</span>
-            <a href="/about" className="font-semibold text-xl text-gray-300 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors duration-150">About</a>
-            <a href="https://soundcloud.com/sbruno636" target="_blank" rel="noopener noreferrer" className="font-semibold text-xl text-gray-300 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors duration-150">Music</a>
+            <button onClick={() => setView("projects")} className={navItemClass(view === "projects")}>
+              Projects
+            </button>
+            <button onClick={() => setView("about")} className={navItemClass(view === "about")}>
+              About
+            </button>
+            <a href="https://soundcloud.com/sbruno636" target="_blank" rel="noopener noreferrer" className={navItemClass(false)}>
+              Music
+            </a>
           </nav>
         </div>
       </section>
 
-      {/* Project sections */}
-      {projects.map((project) => (
-        <section key={project.id} className="border-t border-gray-200 dark:border-gray-800">
-          <div className="max-w-5xl mx-auto px-8 py-20">
-            <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
-              {/* Left: title + description — sticky on desktop */}
-              <div className="shrink-0 md:w-1/3 md:sticky md:top-16">
-                <h2 className="font-bold text-sm mb-3">{project.title}</h2>
-                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                  {project.description}
-                </p>
-              </div>
+      {/* Content area — swaps between projects and about */}
+      {view === "projects" ? (
+        projects.map((project) => (
+          <section key={project.id} className="border-t border-gray-200 dark:border-gray-800">
+            <div className="max-w-5xl mx-auto px-8 py-20">
+              <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
+                {/* Left: title + description — sticky on desktop */}
+                <div className="shrink-0 md:w-1/3 md:sticky md:top-16">
+                  <h2 className="font-bold text-sm mb-3">{project.title}</h2>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                    {project.description}
+                  </p>
+                </div>
 
-              {/* Right: stacked image placeholders */}
-              <div className="flex-1 flex flex-col gap-6">
-                {Array.from({ length: project.imageCount }).map((_, i) => (
-                  <div
-                    key={i}
-                    className={`bg-gray-100 dark:bg-gray-800 rounded-2xl w-full ${
-                      project.imageCount > 1 ? "aspect-square" : "aspect-[16/10]"
-                    }`}
-                  />
-                ))}
+                {/* Right: stacked image placeholders */}
+                <div className="flex-1 flex flex-col gap-6">
+                  {Array.from({ length: project.imageCount }).map((_, i) => (
+                    <div
+                      key={i}
+                      className={`bg-gray-100 dark:bg-gray-800 rounded-2xl w-full ${
+                        project.imageCount > 1 ? "aspect-square" : "aspect-[16/10]"
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
+          </section>
+        ))
+      ) : (
+        <section className="border-t border-gray-200 dark:border-gray-800">
+          <div className="max-w-5xl mx-auto px-8 py-20">
+            <p className="text-gray-600 dark:text-gray-400 leading-relaxed max-w-[500px]">
+              Coming soon.
+            </p>
           </div>
         </section>
-      ))}
+      )}
     </div>
   );
 }
