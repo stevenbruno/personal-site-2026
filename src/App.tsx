@@ -9,7 +9,7 @@ function Layout() {
   const isHome = pathname === "/";
 
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen bg-white dark:bg-transparent text-gray-900 dark:text-white">
       {!isHome && <Nav />}
       <main>
         <Routes>

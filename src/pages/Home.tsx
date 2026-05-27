@@ -38,34 +38,34 @@ const projects = [
 
 export default function Home() {
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white dark:bg-transparent min-h-screen">
       {/* Intro section — bio left, nav right */}
       <section className="max-w-5xl mx-auto px-8 py-24">
         <div className="flex items-start justify-between gap-16">
-          <p className="text-lg leading-relaxed text-gray-900 max-w-[500px]">
+          <p className="text-lg leading-relaxed text-gray-900 dark:text-white max-w-[500px]">
             I'm Steven, a product designer with 7 years of experience designing
             desktop and mobile apps. Currently, I'm helping to design the{" "}
-            <strong>Spotify</strong> mobile app. Previously, I worked at{" "}
-            <strong>Toast</strong>.
+            Spotify mobile app. Previously, I worked at{" "}
+            <a href="https://pos.toasttab.com/?srsltid=AfmBOopu4InSUsLf1tRH0ZVGSpGD7Tb3BAysJlnO2_3v4gq98dTEPtJz" target="_blank" rel="noopener noreferrer" className="hover:text-[#ff4c01] transition-colors duration-150">Toast</a>.
           </p>
 
           <nav className="flex flex-col gap-1 shrink-0 text-right">
-            <span className="font-semibold text-xl text-gray-900">Projects</span>
-            <a href="/about" className="font-semibold text-xl text-gray-300 hover:text-gray-900 transition-colors duration-150">About</a>
-            <a href="https://soundcloud.com/sbruno636" target="_blank" rel="noopener noreferrer" className="font-semibold text-xl text-gray-300 hover:text-gray-900 transition-colors duration-150">Music</a>
+            <span className="font-semibold text-xl text-gray-900 dark:text-white">Projects</span>
+            <a href="/about" className="font-semibold text-xl text-gray-300 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors duration-150">About</a>
+            <a href="https://soundcloud.com/sbruno636" target="_blank" rel="noopener noreferrer" className="font-semibold text-xl text-gray-300 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors duration-150">Music</a>
           </nav>
         </div>
       </section>
 
       {/* Project sections */}
       {projects.map((project) => (
-        <section key={project.id} className="border-t border-gray-200">
+        <section key={project.id} className="border-t border-gray-200 dark:border-gray-800">
           <div className="max-w-5xl mx-auto px-8 py-20">
             <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
               {/* Left: title + description — sticky on desktop */}
               <div className="shrink-0 md:w-1/3 md:sticky md:top-16">
                 <h2 className="font-bold text-sm mb-3">{project.title}</h2>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                   {project.description}
                 </p>
               </div>
@@ -75,7 +75,7 @@ export default function Home() {
                 {Array.from({ length: project.imageCount }).map((_, i) => (
                   <div
                     key={i}
-                    className={`bg-gray-100 rounded-2xl w-full ${
+                    className={`bg-gray-100 dark:bg-gray-800 rounded-2xl w-full ${
                       project.imageCount > 1 ? "aspect-square" : "aspect-[16/10]"
                     }`}
                   />
