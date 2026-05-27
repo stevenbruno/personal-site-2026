@@ -1,10 +1,90 @@
+const projects = [
+  {
+    id: 1,
+    title: "Smart Search Filters",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    imageCount: 2,
+  },
+  {
+    id: 2,
+    title: "Agentic Search",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    imageCount: 1,
+  },
+  {
+    id: 3,
+    title: "Track Deduplication",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    imageCount: 3,
+  },
+  {
+    id: 4,
+    title: "Razr Cover Screen",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    imageCount: 2,
+  },
+  {
+    id: 5,
+    title: "MyToast",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    imageCount: 1,
+  },
+];
+
 export default function Home() {
   return (
-    <section className="px-6 py-24 md:px-12 max-w-3xl">
-      <p className="text-sm text-gray-500 mb-4">Product Designer</p>
-      <h1 className="text-4xl md:text-5xl font-semibold leading-tight tracking-tight">
-        Hi, I'm Steven — I design digital products that are clear, useful, and well-crafted.
-      </h1>
-    </section>
+    <div className="bg-white min-h-screen">
+      {/* Intro section — bio left, nav right */}
+      <section className="max-w-5xl mx-auto px-8 py-24">
+        <div className="flex items-start justify-between gap-16">
+          <p className="text-lg leading-relaxed text-gray-900 max-w-[500px]">
+            I'm Steven, a product designer with 7 years of experience designing
+            desktop and mobile apps. Currently, I'm helping to design the{" "}
+            <strong>Spotify</strong> mobile app. Previously, I worked at{" "}
+            <strong>Toast</strong>.
+          </p>
+
+          <nav className="flex flex-col gap-1 shrink-0 text-right">
+            <span className="font-semibold text-xl text-gray-900">Projects</span>
+            <a href="/about" className="font-semibold text-xl text-gray-300 hover:text-gray-900 transition-colors duration-150">About</a>
+            <a href="https://soundcloud.com/sbruno636" target="_blank" rel="noopener noreferrer" className="font-semibold text-xl text-gray-300 hover:text-gray-900 transition-colors duration-150">Music</a>
+          </nav>
+        </div>
+      </section>
+
+      {/* Project sections */}
+      {projects.map((project) => (
+        <section key={project.id} className="border-t border-gray-200">
+          <div className="max-w-5xl mx-auto px-8 py-20">
+            <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
+              {/* Left: title + description — sticky on desktop */}
+              <div className="shrink-0 md:w-1/3 md:sticky md:top-16">
+                <h2 className="font-bold text-sm mb-3">{project.title}</h2>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  {project.description}
+                </p>
+              </div>
+
+              {/* Right: stacked image placeholders */}
+              <div className="flex-1 flex flex-col gap-6">
+                {Array.from({ length: project.imageCount }).map((_, i) => (
+                  <div
+                    key={i}
+                    className={`bg-gray-100 rounded-2xl w-full ${
+                      project.imageCount > 1 ? "aspect-square" : "aspect-[16/10]"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      ))}
+    </div>
   );
 }
