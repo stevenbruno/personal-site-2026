@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-type ProjectImage = { src: string; type: "full" | "phone"; small?: boolean; zoom?: boolean; aspect?: string };
+type ProjectImage = { src: string; type: "full" | "phone"; small?: boolean; zoom?: boolean; aspect?: string; uncropped?: boolean };
 
 const projects: {
   id: number;
@@ -9,6 +9,8 @@ const projects: {
   images: ProjectImage[];
   placeholderCount?: number;
   columns?: number;
+  phoneContainerHeight?: string;
+  phoneHeight?: string;
 }[] = [
   {
     id: 1,
@@ -16,8 +18,8 @@ const projects: {
     description:
       "In this code-first design project, I used Claude Code to define a new advanced filtering tool for Spotify Search. This is actively being tested.",
     images: [
-      { src: "/images/filters.png", type: "full", aspect: "aspect-[4/3]" },
-      { src: "/images/filters2.png", type: "full", aspect: "aspect-[4/3]" },
+      { src: "/images/filters1.png", type: "full", uncropped: true },
+      { src: "/images/filters2.png", type: "full", uncropped: true },
     ],
   },
   {
@@ -26,13 +28,14 @@ const projects: {
     description:
       "I co-lead the design of the future of agentic search within Spotify. This is a confidential project.",
     images: [{ src: "/images/agentic-search.png", type: "phone" }],
+    phoneContainerHeight: "h-[520px]",
   },
   {
     id: 3,
     title: "Spotify Agent Conversation Analysis",
     description:
       "I led the design of an internal tool that allows Spotify teammates to better understand why and how external users converse with the new Spotify conversational DJ. This is a confidential project.",
-    images: [{ src: "/images/conversation-analysis.png", type: "full", zoom: true }],
+    images: [{ src: "/images/convoanalysis.png", type: "full", uncropped: true }],
   },
   {
     id: 4,
@@ -40,8 +43,8 @@ const projects: {
     description:
       "I led the design and user research of a new feature on the Spotify mobile app that aims to declutter search results by deduplicating similar recordings of a single song. This project is actively being tested.",
     images: [
-      { src: "/images/dedup3.png", type: "phone" },
-      { src: "/images/dedup4.png", type: "phone" },
+      { src: "/images/duplication501.png", type: "phone" },
+      { src: "/images/duplication502.png", type: "phone" },
     ],
     columns: 2,
   },
@@ -139,9 +142,9 @@ export default function Home() {
         projects.map((project) => (
           <section key={project.id} className="border-t border-gray-200 dark:border-gray-800">
             <div className="max-w-[1080px] mx-auto px-8 py-20">
-              <div className="flex flex-col md:flex-row gap-12 md:gap-32 items-start">
+              <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
                 {/* Left: title + description — sticky on desktop */}
-                <div className="shrink-0 md:w-1/5 md:sticky md:top-16">
+                <div className="shrink-0 md:w-1/4 md:sticky md:top-16">
                   <h2 className="font-bold text-sm mb-3">{project.title}</h2>
                   <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                     {project.description}
@@ -149,7 +152,7 @@ export default function Home() {
                 </div>
 
                 {/* Right: images or gray placeholders */}
-                <div className="flex-1 flex flex-col gap-6">
+                <div className="flex-1 flex flex-col">
                   {(() => {
                     const items: (ProjectImage | null)[] =
                       project.images.length > 0
@@ -161,16 +164,16 @@ export default function Home() {
                       const chunks: (ProjectImage | null)[][] = [];
                       for (let i = 0; i < items.length; i += 2) chunks.push(items.slice(i, i + 2));
                       return chunks.map((chunk, ci) => (
-                        <div key={ci} className="bg-gray-100 dark:bg-gray-800 rounded-2xl w-full aspect-square flex flex-row items-center justify-center p-8 gap-6">
+                        <div key={ci} className="rounded-2xl w-full flex flex-row items-center justify-center px-8 gap-6">
                           {chunk.map((img, ii) =>
                             img === null ? (
                               <div key={ii} className="flex-1" />
                             ) : (
-                              <div key={ii} className="flex-1 flex items-center justify-center h-full min-w-0 cursor-pointer" onClick={() => setLightboxSrc(img.src)}>
+                              <div key={ii} className="flex-1 flex items-center justify-center min-w-0 cursor-pointer" onClick={() => setLightboxSrc(img.src)}>
                                 <img
                                   src={img.src}
                                   alt=""
-                                  className={`max-h-full max-w-full object-contain${img.small ? " scale-[0.6]" : ""}`}
+                                  className={`h-[666px] max-w-full object-contain${img.small ? " scale-[0.6]" : ""}`}
                                 />
                               </div>
                             )
@@ -184,13 +187,15 @@ export default function Home() {
                     return items.map((img, i) =>
                       img === null ? (
                         <div key={i} className={`bg-gray-100 dark:bg-gray-800 rounded-2xl w-full ${aspectClass}`} />
+                      ) : img.type === "full" && img.uncropped ? (
+                        <img key={i} src={img.src} alt="" className="w-full h-auto rounded-2xl cursor-pointer" style={{ maskImage: "linear-gradient(to bottom, black calc(100% - 8px), transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, black calc(100% - 8px), transparent 100%)" }} onClick={() => setLightboxSrc(img.src)} />
                       ) : img.type === "full" ? (
                         <div key={i} className={`rounded-2xl overflow-hidden w-full ${img.aspect ?? aspectClass} cursor-pointer`} onClick={() => setLightboxSrc(img.src)}>
                           <img src={img.src} alt="" className={`w-full h-full object-cover${img.zoom ? " scale-[1.1]" : ""}`} />
                         </div>
                       ) : (
-                        <div key={i} className={`bg-gray-100 dark:bg-gray-800 rounded-2xl w-full ${aspectClass} flex items-center justify-center p-8 cursor-pointer`} onClick={() => setLightboxSrc(img.src)}>
-                          <img src={img.src} alt="" className={`max-h-full max-w-full object-contain${img.small ? " scale-[0.6]" : ""}`} />
+                        <div key={i} className={`rounded-2xl w-full ${project.phoneContainerHeight ?? "h-[666px]"} flex items-center justify-center p-8 cursor-pointer`} onClick={() => setLightboxSrc(img.src)}>
+                          <img src={img.src} alt="" className={`h-[666px] max-w-full object-contain${img.small ? " scale-[0.6]" : ""}`} />
                         </div>
                       )
                     );
