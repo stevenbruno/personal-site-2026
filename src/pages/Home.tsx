@@ -1,47 +1,69 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const projects = [
+type ProjectImage = { src: string; type: "full" | "phone"; small?: boolean; zoom?: boolean; aspect?: string };
+
+const projects: {
+  id: number;
+  title: string;
+  description: string;
+  images: ProjectImage[];
+  placeholderCount?: number;
+  columns?: number;
+}[] = [
   {
     id: 1,
     title: "Spotify Smart Search Filters",
     description:
       "In this code-first design project, I used Claude Code to define a new advanced filtering tool for Spotify Search. This is actively being tested.",
-    imageCount: 2,
+    images: [
+      { src: "/images/filters.png", type: "full", aspect: "aspect-[4/3]" },
+      { src: "/images/filters2.png", type: "full", aspect: "aspect-[4/3]" },
+    ],
   },
   {
     id: 2,
     title: "Spotify Agentic Search",
     description:
       "I co-lead the design of the future of agentic search within Spotify. This is a confidential project.",
-    imageCount: 1,
+    images: [{ src: "/images/agentic-search.png", type: "phone" }],
   },
   {
     id: 3,
     title: "Spotify Agent Conversation Analysis",
     description:
       "I led the design of an internal tool that allows Spotify teammates to better understand why and how external users converse with the new Spotify conversational DJ. This is a confidential project.",
-    imageCount: 2,
+    images: [{ src: "/images/conversation-analysis.png", type: "full", zoom: true }],
   },
   {
     id: 4,
     title: "Spotify Track Deduplication",
     description:
       "I led the design and user research of a new feature on the Spotify mobile app that aims to declutter search results by deduplicating similar recordings of a single song. This project is actively being tested.",
-    imageCount: 3,
+    images: [
+      { src: "/images/dedup3.png", type: "phone" },
+      { src: "/images/dedup4.png", type: "phone" },
+    ],
+    columns: 2,
   },
   {
     id: 5,
     title: "Spotify x Motorola Razr Cover Screen",
     description:
       "In 2024, Motorola planned to launch a larger Motorola Razr device. Spotify and Motorola partnered to deliver a new Spotify experience for the cover screen (the screen you see while the phone is folded closed). In this project, I led the design of the new UI that brought new Spotify features to the cover screen like DJ mode and an updated queue.",
-    imageCount: 2,
+    images: [{ src: "/images/razr.png", type: "phone" }],
   },
   {
     id: 6,
     title: "Toast MyToast Mobile App",
     description:
       "I was the lead designer for the first version of Toast's first mobile app for iOS and Android called MyToast. The app enabled restaurant employees to get access to their paychecks earlier than normal. With help from the design system team and other visual designers, I designed almost the entire app - onboarding flows, withdrawal flows, paycheck visualizations, settings, legal disclaimers, and even app store marketing assets. Today, the app has 4.7 stars on the Apple App Store.",
-    imageCount: 1,
+    images: [
+      { src: "/images/mytoast2.png", type: "phone" },
+      { src: "/images/mytoast3.png", type: "phone" },
+      { src: "/images/mytoast4.png", type: "phone" },
+      { src: "/images/mytoast1.png", type: "phone" },
+    ],
+    columns: 2,
   },
 ];
 
@@ -49,6 +71,13 @@ type View = "projects" | "about";
 
 export default function Home() {
   const [view, setView] = useState<View>("projects");
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setLightboxSrc(null); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   const navItemClass = (active: boolean) =>
     active
@@ -79,7 +108,7 @@ export default function Home() {
       </nav>
 
       {/* Intro section — bio left, nav right */}
-      <section className="max-w-5xl mx-auto px-8 pt-48 pb-24">
+      <section className="max-w-[1080px] mx-auto px-8 pt-48 pb-24">
         <div className="flex items-start gap-16">
           {view !== "about" && (
             <p className="text-lg leading-relaxed text-gray-900 dark:text-white max-w-[500px] mr-auto">
@@ -109,26 +138,63 @@ export default function Home() {
       {view === "projects" ? (
         projects.map((project) => (
           <section key={project.id} className="border-t border-gray-200 dark:border-gray-800">
-            <div className="max-w-5xl mx-auto px-8 py-20">
-              <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
+            <div className="max-w-[1080px] mx-auto px-8 py-20">
+              <div className="flex flex-col md:flex-row gap-12 md:gap-32 items-start">
                 {/* Left: title + description — sticky on desktop */}
-                <div className="shrink-0 md:w-1/3 md:sticky md:top-16">
+                <div className="shrink-0 md:w-1/5 md:sticky md:top-16">
                   <h2 className="font-bold text-sm mb-3">{project.title}</h2>
                   <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                     {project.description}
                   </p>
                 </div>
 
-                {/* Right: stacked image placeholders */}
+                {/* Right: images or gray placeholders */}
                 <div className="flex-1 flex flex-col gap-6">
-                  {Array.from({ length: project.imageCount }).map((_, i) => (
-                    <div
-                      key={i}
-                      className={`bg-gray-100 dark:bg-gray-800 rounded-2xl w-full ${
-                        project.imageCount > 1 ? "aspect-square" : "aspect-[16/10]"
-                      }`}
-                    />
-                  ))}
+                  {(() => {
+                    const items: (ProjectImage | null)[] =
+                      project.images.length > 0
+                        ? project.images
+                        : Array.from({ length: project.placeholderCount ?? 2 }, () => null);
+
+                    if (project.columns === 2) {
+                      // Pair up images onto a shared gray background
+                      const chunks: (ProjectImage | null)[][] = [];
+                      for (let i = 0; i < items.length; i += 2) chunks.push(items.slice(i, i + 2));
+                      return chunks.map((chunk, ci) => (
+                        <div key={ci} className="bg-gray-100 dark:bg-gray-800 rounded-2xl w-full aspect-square flex flex-row items-center justify-center p-8 gap-6">
+                          {chunk.map((img, ii) =>
+                            img === null ? (
+                              <div key={ii} className="flex-1" />
+                            ) : (
+                              <div key={ii} className="flex-1 flex items-center justify-center h-full min-w-0 cursor-pointer" onClick={() => setLightboxSrc(img.src)}>
+                                <img
+                                  src={img.src}
+                                  alt=""
+                                  className={`max-h-full max-w-full object-contain${img.small ? " scale-[0.6]" : ""}`}
+                                />
+                              </div>
+                            )
+                          )}
+                        </div>
+                      ));
+                    }
+
+                    // Default: one image per row
+                    const aspectClass = items.length === 1 ? "aspect-[16/10]" : "aspect-square";
+                    return items.map((img, i) =>
+                      img === null ? (
+                        <div key={i} className={`bg-gray-100 dark:bg-gray-800 rounded-2xl w-full ${aspectClass}`} />
+                      ) : img.type === "full" ? (
+                        <div key={i} className={`rounded-2xl overflow-hidden w-full ${img.aspect ?? aspectClass} cursor-pointer`} onClick={() => setLightboxSrc(img.src)}>
+                          <img src={img.src} alt="" className={`w-full h-full object-cover${img.zoom ? " scale-[1.1]" : ""}`} />
+                        </div>
+                      ) : (
+                        <div key={i} className={`bg-gray-100 dark:bg-gray-800 rounded-2xl w-full ${aspectClass} flex items-center justify-center p-8 cursor-pointer`} onClick={() => setLightboxSrc(img.src)}>
+                          <img src={img.src} alt="" className={`max-h-full max-w-full object-contain${img.small ? " scale-[0.6]" : ""}`} />
+                        </div>
+                      )
+                    );
+                  })()}
                 </div>
               </div>
             </div>
@@ -136,7 +202,7 @@ export default function Home() {
         ))
       ) : (
         <section className="border-t border-gray-200 dark:border-gray-800">
-          <div className="max-w-5xl mx-auto px-8 py-20 flex justify-center">
+          <div className="max-w-[1080px] mx-auto px-8 py-20 flex justify-center">
             <div className="flex flex-col gap-5 text-gray-600 dark:text-gray-400 leading-relaxed max-w-[500px]">
               <p>
                 My name is Steven Bruno. I'm a digital product designer that grew up in Los Angeles, studied in Chicago, and am now living in Brooklyn.
@@ -161,6 +227,27 @@ export default function Home() {
             </div>
           </div>
         </section>
+      )}
+
+      {/* Lightbox overlay */}
+      {lightboxSrc && (
+        <div
+          className="fixed inset-0 z-50 bg-black/85 flex items-center justify-center p-8"
+          onClick={() => setLightboxSrc(null)}
+        >
+          <button
+            className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors text-3xl leading-none"
+            onClick={() => setLightboxSrc(null)}
+          >
+            ✕
+          </button>
+          <img
+            src={lightboxSrc}
+            alt=""
+            className="max-w-full max-h-full object-contain rounded-xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
       )}
     </div>
   );
