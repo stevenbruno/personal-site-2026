@@ -79,7 +79,7 @@ export default function Home() {
       </nav>
 
       {/* Intro section — bio left, nav right */}
-      <section className="max-w-5xl mx-auto px-8 py-24">
+      <section className="max-w-5xl mx-auto px-8 pt-48 pb-24">
         <div className="flex items-start gap-16">
           {view !== "about" && (
             <p className="text-lg leading-relaxed text-gray-900 dark:text-white max-w-[500px] mr-auto">
