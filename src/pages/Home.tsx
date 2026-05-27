@@ -3,44 +3,44 @@ import { useState } from "react";
 const projects = [
   {
     id: 1,
-    title: "Smart Search Filters",
+    title: "Spotify Smart Search Filters",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+      "In this code-first design project, I used Claude Code to define a new advanced filtering tool for Spotify Search. This is actively being tested.",
     imageCount: 2,
   },
   {
     id: 2,
-    title: "Agentic Search",
+    title: "Spotify Agentic Search",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+      "I co-lead the design of the future of agentic search within Spotify. This is a confidential project.",
     imageCount: 1,
   },
   {
     id: 3,
-    title: "Agent Conversation Analysis",
+    title: "Spotify Agent Conversation Analysis",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+      "I led the design of an internal tool that allows Spotify teammates to better understand why and how external users converse with the new Spotify conversational DJ. This is a confidential project.",
     imageCount: 2,
   },
   {
     id: 4,
-    title: "Track Deduplication",
+    title: "Spotify Track Deduplication",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+      "I led the design and user research of a new feature on the Spotify mobile app that aims to declutter search results by deduplicating similar recordings of a single song. This project is actively being tested.",
     imageCount: 3,
   },
   {
     id: 5,
-    title: "Razr Cover Screen",
+    title: "Spotify x Motorola Razr Cover Screen",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+      "In 2024, Motorola planned to launch a larger Motorola Razr device. Spotify and Motorola partnered to deliver a new Spotify experience for the cover screen (the screen you see while the phone is folded closed). In this project, I led the design of the new UI that brought new Spotify features to the cover screen like DJ mode and an updated queue.",
     imageCount: 2,
   },
   {
     id: 6,
-    title: "MyToast",
+    title: "Toast MyToast Mobile App",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+      "I was the lead designer for the first version of Toast's first mobile app for iOS and Android called MyToast. The app enabled restaurant employees to get access to their paychecks earlier than normal. With help from the design system team and other visual designers, I designed almost the entire app - onboarding flows, withdrawal flows, paycheck visualizations, settings, legal disclaimers, and even app store marketing assets. Today, the app has 4.7 stars on the Apple App Store.",
     imageCount: 1,
   },
 ];
