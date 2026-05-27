@@ -58,7 +58,7 @@ const projects: {
   },
   {
     id: 6,
-    title: "Toast MyToast Mobile App",
+    title: "MyToast Mobile App",
     description:
       "I was the lead designer for the first version of Toast's first mobile app for iOS and Android called MyToast. The app enabled restaurant employees to get access to their paychecks earlier than normal. With help from the design system team and other visual designers, I designed almost the entire app - onboarding flows, withdrawal flows, paycheck visualizations, settings, legal disclaimers, and even app store marketing assets. Today, the app has 4.7 stars on the Apple App Store.",
     images: [
@@ -155,7 +155,7 @@ export default function Home() {
             <div className="max-w-[1080px] mx-auto px-8 py-20">
               <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
                 {/* Left: title + description — sticky on desktop */}
-                <div className="shrink-0 md:w-1/4 md:sticky md:top-16">
+                <div className="shrink-0 md:w-1/3 md:sticky md:top-16">
                   <h2 className="font-bold text-sm mb-3">{project.title}</h2>
                   <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                     {project.description}
