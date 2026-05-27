@@ -11,12 +11,13 @@ const projects: {
   columns?: number;
   phoneContainerHeight?: string;
   phoneHeight?: string;
+  confidential?: boolean;
 }[] = [
   {
     id: 1,
     title: "Spotify Smart Search Filters",
     description:
-      "In this code-first design project, I used Claude Code to define a new advanced filtering tool for Spotify Search. This is actively being tested.",
+      "As Spotify expanded it's content offerings, we needed a new way to enable users to more efficiently find content that fit whatever niche they might be seeking. In this code-first design project, I used Claude Code to define a new advanced filtering tool for Spotify Search.",
     images: [
       { src: "/images/filters1.png", type: "full", uncropped: true },
       { src: "/images/filters2.png", type: "full", uncropped: true },
@@ -26,22 +27,22 @@ const projects: {
     id: 2,
     title: "Spotify Agentic Search",
     description:
-      "I co-lead the design of the future of agentic search within Spotify. This is a confidential project.",
-    images: [{ src: "/images/agentic-search.png", type: "phone" }],
+      "I co-lead the design of the future of agentic search within Spotify. This is a confidential project. A case can be made available upon request.",
+    images: [{ src: "/images/confidential.png", type: "phone" }],
     phoneContainerHeight: "h-[520px]",
   },
   {
     id: 3,
     title: "Spotify Agent Conversation Analysis",
     description:
-      "I led the design of an internal tool that allows Spotify teammates to better understand why and how external users converse with the new Spotify conversational DJ. This is a confidential project.",
+      "I led the design of an internal tool that allows Spotify teammates to better understand why and how external users converse with the new Spotify conversational DJ. I built this site with Claude Code using React and Typescript.",
     images: [{ src: "/images/convoanalysis.png", type: "full", uncropped: true }],
   },
   {
     id: 4,
     title: "Spotify Track Deduplication",
     description:
-      "I led the design and user research of a new feature on the Spotify mobile app that aims to declutter search results by deduplicating similar recordings of a single song. This project is actively being tested.",
+      "I led the design of a feature in the Spotify mobile app that aims to declutter search results by deduplicating similar recordings of a single song. I also led multiple rounds of user research to inform the designs.",
     images: [
       { src: "/images/duplication501.png", type: "phone" },
       { src: "/images/duplication502.png", type: "phone" },
@@ -52,7 +53,7 @@ const projects: {
     id: 5,
     title: "Spotify x Motorola Razr Cover Screen",
     description:
-      "In 2024, Motorola planned to launch a larger Motorola Razr device. Spotify and Motorola partnered to deliver a new Spotify experience for the cover screen (the screen you see while the phone is folded closed). In this project, I led the design of the new UI that brought new Spotify features to the cover screen like DJ mode and an updated queue.",
+      "In 2024, Motorola planned to launch a larger Motorola Razr device. With that release, Spotify and Motorola partnered to deliver a new Spotify experience for the cover screen (the screen you see while the phone is folded closed). In this project, I led the design of the new UI that brought a new layout and new Spotify features to the cover screen like DJ mode and a new queue.",
     images: [{ src: "/images/razr.png", type: "phone" }],
   },
   {
@@ -67,6 +68,7 @@ const projects: {
       { src: "/images/mytoast1.png", type: "phone" },
     ],
     columns: 2,
+    phoneHeight: "h-[620px]",
   },
 ];
 
@@ -113,13 +115,22 @@ export default function Home() {
       {/* Intro section — bio left, nav right */}
       <section className="max-w-[1080px] mx-auto px-8 pt-48 pb-24">
         <div className="flex items-start gap-16">
-          {view !== "about" && (
+          {view === "projects" && (
             <p className="text-lg leading-relaxed text-gray-900 dark:text-white max-w-[500px] mr-auto">
               I'm Steven, a product designer with {new Date().getFullYear() - 2019} years of experience designing
               desktop and mobile apps. Currently, I'm helping to design the{" "}
               Spotify mobile app. Previously, I worked at{" "}
               <a href="https://pos.toasttab.com/?srsltid=AfmBOopu4InSUsLf1tRH0ZVGSpGD7Tb3BAysJlnO2_3v4gq98dTEPtJz" target="_blank" rel="noopener noreferrer" className="hover:text-[#ff4c01] transition-colors duration-150">Toast</a>.
             </p>
+          )}
+          {view === "about" && (
+            <div className="flex flex-col gap-5 text-gray-600 dark:text-gray-400 leading-relaxed max-w-[500px] mr-auto text-sm">
+              <p>My name is Steven Bruno. I'm a digital product designer that grew up in Los Angeles, studied in Chicago, and am now living in Brooklyn.</p>
+              <p>I originally studied Civil Engineering as I planned to pursue a career in Architecture. Along the way, I discovered my passion for digital product design, and I've pursued this design career ever since.</p>
+              <p>Currently, I work with an incredibly talented team to help design and build the Spotify mobile app. I also am a lead course author and instructor for internal Spotify trainings like 'Advanced Prototyping in Figma' and 'Prototyping with Claude Code'. Previously, I worked at a restaurant technology company called Toast. You might see some of their hardware inside your favorite restaurants.</p>
+              <p>Outside of work, I love to make music and spend as much time outside as possible.</p>
+              <a href="https://www.linkedin.com/in/stevenjbruno/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:opacity-70 transition-opacity duration-150 font-medium">LinkedIn</a>
+            </div>
           )}
 
           {/* Desktop vertical nav — hidden on mobile */}
@@ -173,7 +184,7 @@ export default function Home() {
                                 <img
                                   src={img.src}
                                   alt=""
-                                  className={`h-[666px] max-w-full object-contain${img.small ? " scale-[0.6]" : ""}`}
+                                  className={`${project.phoneHeight ?? "h-[666px]"} max-w-full object-contain${img.small ? " scale-[0.6]" : ""}`}
                                 />
                               </div>
                             )
@@ -195,7 +206,7 @@ export default function Home() {
                         </div>
                       ) : (
                         <div key={i} className={`rounded-2xl w-full ${project.phoneContainerHeight ?? "h-[666px]"} flex items-center justify-center p-8 cursor-pointer`} onClick={() => setLightboxSrc(img.src)}>
-                          <img src={img.src} alt="" className={`h-[666px] max-w-full object-contain${img.small ? " scale-[0.6]" : ""}`} />
+                          <img src={img.src} alt="" className={`${project.phoneHeight ?? "h-[666px]"} max-w-full object-contain${img.small ? " scale-[0.6]" : ""}`} />
                         </div>
                       )
                     );
@@ -205,34 +216,7 @@ export default function Home() {
             </div>
           </section>
         ))
-      ) : (
-        <section className="border-t border-gray-200 dark:border-gray-800">
-          <div className="max-w-[1080px] mx-auto px-8 py-20 flex justify-center">
-            <div className="flex flex-col gap-5 text-gray-600 dark:text-gray-400 leading-relaxed max-w-[500px]">
-              <p>
-                My name is Steven Bruno. I'm a digital product designer that grew up in Los Angeles, studied in Chicago, and am now living in Brooklyn.
-              </p>
-              <p>
-                I originally studied Civil Engineering as I planned to pursue a career in Architecture. Along the way, I discovered my passion for digital product design, and I've pursued this design career ever since.
-              </p>
-              <p>
-                Currently, I work with an incredibly talented team to help design and build the Spotify mobile app. I also am a lead course author and instructor for internal Spotify trainings like 'Advanced Prototyping in Figma' and 'Prototyping with Claude Code'. Previously, I worked at a restaurant technology company called Toast. You might see some of their hardware inside your favorite restaurants.
-              </p>
-              <p>
-                Outside of work, I love to make music and spend as much time outside as possible.
-              </p>
-              <a
-                href="https://www.linkedin.com/in/stevenjbruno/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:opacity-70 transition-opacity duration-150 text-sm font-medium"
-              >
-                LinkedIn
-              </a>
-            </div>
-          </div>
-        </section>
-      )}
+      ) : null}
 
       {/* Lightbox overlay */}
       {lightboxSrc && (
