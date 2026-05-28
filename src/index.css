@@ -32,7 +32,7 @@ html.dark {
 }
 
 html.dark body {
-  background: radial-gradient(ellipse at 62% 75%, #202020 0%, #0d0d0d 70%);
+  background: radial-gradient(ellipse at 62% 75%, #131313 0%, #0d0d0d 80%);
   background-attachment: fixed;
 }
 
