@@ -131,7 +131,7 @@ export default function Home() {
       </nav>
 
       {/* Intro section — bio left, nav right */}
-      <section className="max-w-[1180px] mx-auto px-8 pt-48 pb-24">
+      <section className="max-w-[1180px] mx-auto px-8 pt-48 pb-48">
         <div className="flex items-start gap-16">
           {view === "projects" && (
             <p className="text-lg leading-relaxed text-gray-900 dark:text-white max-w-[500px] mr-auto">
@@ -142,7 +142,7 @@ export default function Home() {
             </p>
           )}
           {view === "about" && (
-            <div className="flex flex-col gap-5 text-gray-600 dark:text-gray-400 leading-relaxed max-w-[500px] mr-auto text-sm">
+            <div className="flex flex-col gap-5 text-gray-600 dark:text-gray-400 leading-relaxed max-w-[650px] mr-auto text-lg">
               <p>My name is Steven Bruno. I'm a digital product designer that grew up in Los Angeles, studied in Chicago, and am now living in Brooklyn.</p>
               <p>I originally studied Civil Engineering as I planned to pursue a career in Architecture. Along the way, I discovered my passion for digital product design, and I've pursued this career ever since.</p>
               <p>Currently, I work with an incredibly talented team to help design and build the Spotify mobile app. I also am a lead course author and instructor for internal Spotify trainings like 'Advanced Prototyping in Figma' and 'Prototyping with Claude Code'. Previously, I worked at a restaurant technology company called Toast. You might see some of their hardware inside your favorite restaurants.</p>

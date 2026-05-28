@@ -11,7 +11,6 @@ export default function Nav() {
       </NavLink>
       <div className="flex gap-8 text-sm">
         <NavLink to="/work" className={linkClass}>Work</NavLink>
-        <NavLink to="/about" className={linkClass}>About</NavLink>
       </div>
     </nav>
   );

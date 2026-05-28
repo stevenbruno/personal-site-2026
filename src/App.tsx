@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Nav from "./components/Nav";
 import Home from "./pages/Home";
 import Work from "./pages/Work";
-import About from "./pages/About";
 
 const DARK_MODE_KEY = "darkModePreference";
 const DARK_MODE_TTL = 4 * 60 * 60 * 1000; // 4 hours in ms
@@ -107,7 +106,6 @@ function Layout() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/work" element={<Work />} />
-          <Route path="/about" element={<About />} />
         </Routes>
       </main>
 
