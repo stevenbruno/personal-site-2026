@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import Nav from "./components/Nav";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Work from "./pages/Work";
 
 const DARK_MODE_KEY = "darkModePreference";
 const DARK_MODE_TTL = 4 * 60 * 60 * 1000; // 4 hours in ms
@@ -43,11 +41,8 @@ function useDarkMode() {
 }
 
 function Layout() {
-  const { pathname } = useLocation();
-  const isHome = pathname === "/";
   const [dark, setDark] = useDarkMode();
   const [scrolled, setScrolled] = useState(false);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 100);
@@ -55,18 +50,8 @@ function Layout() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const observer = new MutationObserver(() => {
-      setLightboxOpen(document.body.classList.contains("lightbox-open"));
-    });
-    observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <div className="min-h-screen bg-white dark:bg-transparent text-gray-900 dark:text-white">
-      {!isHome && <Nav />}
-
       {/* Dark mode toggle — pill switch */}
       <div className="hidden md:block max-w-[1180px] mx-auto px-8 pt-5">
         <div className="flex justify-end">
@@ -105,7 +90,6 @@ function Layout() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/work" element={<Work />} />
         </Routes>
       </main>
 
@@ -114,7 +98,7 @@ function Layout() {
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Scroll to top"
         className={`fixed bottom-6 right-8 z-50 flex items-center gap-1.5 px-4 py-2 text-xs font-medium rounded-full bg-gray-500 dark:bg-gray-200 text-white dark:text-gray-900 border border-gray-500/60 dark:border-gray-200/60 hover:bg-gray-600 dark:hover:bg-gray-100 shadow-md transition-all duration-300 ${
-          scrolled && !lightboxOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"
+          scrolled ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"
         }`}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

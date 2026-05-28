@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 
-type ProjectImage = { src: string; type: "full" | "phone"; small?: boolean; zoom?: boolean; aspect?: string; uncropped?: boolean };
+type ProjectImage = { src: string; type: "full" | "phone"; uncropped?: boolean };
 
 const projects: {
   id: number;
   title: string;
   description: string | string[];
   images: ProjectImage[];
-  placeholderCount?: number;
   columns?: number;
   phoneContainerHeight?: string;
   phoneHeight?: string;
@@ -190,48 +189,38 @@ export default function Home() {
                 {/* Right: images or gray placeholders */}
                 <div className="flex-1 flex flex-col">
                   {(() => {
-                    const items: (ProjectImage | null)[] =
-                      project.images.length > 0
-                        ? project.images
-                        : Array.from({ length: project.placeholderCount ?? 2 }, () => null);
+                    const { images } = project;
 
                     if (project.columns === 2) {
-                      // Pair up images onto a shared gray background
-                      const chunks: (ProjectImage | null)[][] = [];
-                      for (let i = 0; i < items.length; i += 2) chunks.push(items.slice(i, i + 2));
+                      const chunks: ProjectImage[][] = [];
+                      for (let i = 0; i < images.length; i += 2) chunks.push(images.slice(i, i + 2));
                       return <div className="flex flex-col gap-2">{chunks.map((chunk, ci) => (
                         <div key={ci} className="rounded-2xl w-full flex flex-row items-center justify-center px-8 gap-6">
-                          {chunk.map((img, ii) =>
-                            img === null ? (
-                              <div key={ii} className="flex-1" />
-                            ) : (
-                              <div key={ii} className="flex-1 flex items-center justify-center min-w-0 cursor-pointer" onClick={() => setLightboxSrc(img.src)}>
-                                <img
-                                  src={img.src}
-                                  alt=""
-                                  className={`${project.phoneHeight ?? "h-[666px]"} max-w-full object-contain${img.small ? " scale-[0.6]" : ""}${project.imageShadow ? " [filter:drop-shadow(0_12px_16px_rgba(0,0,0,0.55))]" : ""}`}
-                                />
-                              </div>
-                            )
-                          )}
+                          {chunk.map((img, ii) => (
+                            <div key={ii} className="flex-1 flex items-center justify-center min-w-0 cursor-pointer" onClick={() => setLightboxSrc(img.src)}>
+                              <img
+                                src={img.src}
+                                alt=""
+                                className={`${project.phoneHeight ?? "h-[666px]"} max-w-full object-contain${project.imageShadow ? " [filter:drop-shadow(0_12px_16px_rgba(0,0,0,0.55))]" : ""}`}
+                              />
+                            </div>
+                          ))}
                         </div>
                       ))}</div>;
                     }
 
                     // Default: one image per row
-                    const aspectClass = items.length === 1 ? "aspect-[16/10]" : "aspect-square";
-                    return items.map((img, i) =>
-                      img === null ? (
-                        <div key={i} className={`bg-gray-100 dark:bg-gray-800 rounded-2xl w-full ${aspectClass}`} />
-                      ) : img.type === "full" && img.uncropped ? (
+                    const aspectClass = images.length === 1 ? "aspect-[16/10]" : "aspect-square";
+                    return images.map((img, i) =>
+                      img.type === "full" && img.uncropped ? (
                         <img key={i} src={img.src} alt="" className="w-full h-auto rounded-2xl cursor-pointer" style={{ maskImage: "linear-gradient(to right, transparent, black 8px, black calc(100% - 8px), transparent), linear-gradient(to bottom, black calc(100% - 8px), transparent 100%)", WebkitMaskImage: "linear-gradient(to right, transparent, black 8px, black calc(100% - 8px), transparent), linear-gradient(to bottom, black calc(100% - 8px), transparent 100%)", maskComposite: "intersect", WebkitMaskComposite: "source-in" }} onClick={() => setLightboxSrc(img.src)} />
                       ) : img.type === "full" ? (
-                        <div key={i} className={`rounded-2xl overflow-hidden w-full ${img.aspect ?? aspectClass} cursor-pointer`} onClick={() => setLightboxSrc(img.src)}>
-                          <img src={img.src} alt="" className={`w-full h-full object-cover${img.zoom ? " scale-[1.1]" : ""}`} />
+                        <div key={i} className={`rounded-2xl overflow-hidden w-full ${aspectClass} cursor-pointer`} onClick={() => setLightboxSrc(img.src)}>
+                          <img src={img.src} alt="" className="w-full h-full object-cover" />
                         </div>
                       ) : (
                         <div key={i} className={`rounded-2xl w-full ${project.phoneContainerHeight ?? "h-[666px]"} flex items-center justify-center p-8 cursor-pointer`} onClick={() => setLightboxSrc(img.src)}>
-                          <img src={img.src} alt="" className={`${project.phoneHeight ?? "h-[666px]"} max-w-full object-contain${img.small ? " scale-[0.6]" : ""}`} />
+                          <img src={img.src} alt="" className={`${project.phoneHeight ?? "h-[666px]"} max-w-full object-contain`} />
                         </div>
                       )
                     );
