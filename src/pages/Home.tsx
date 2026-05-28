@@ -6,6 +6,7 @@ const projects: {
   id: number;
   title: string;
   description: string | string[];
+  date: number;
   images: ProjectImage[];
   columns?: number;
   phoneContainerHeight?: string;
@@ -16,6 +17,7 @@ const projects: {
   {
     id: 1,
     title: "Spotify Smart Search Filters",
+    date: 2026,
     description: [
       "As Spotify expanded it's content offerings, we needed a new way to enable users to more efficiently find content that fit whatever niche they might be seeking.",
       "In this code-first design project, I used Claude Code to define a new advanced filtering tool for Spotify Search.",
@@ -28,6 +30,7 @@ const projects: {
   {
     id: 2,
     title: "Spotify Agentic Search",
+    date: 2026,
     description: [
       "I co-lead the design of the future of agentic search within Spotify.",
       "This is a confidential project. A case can be made available upon request.",
@@ -38,6 +41,7 @@ const projects: {
   {
     id: 3,
     title: "Spotify Agent Conversation Analysis",
+    date: 2026,
     description: [
       "I led the design of an internal tool that allows Spotify teammates to better understand why and how external users converse with the new Spotify conversational DJ.",
       "I built this site with Claude Code using React and Typescript.",
@@ -47,6 +51,7 @@ const projects: {
   {
     id: 4,
     title: "Spotify Track Deduplication",
+    date: 2025,
     description: [
       "I led the design of a feature in the Spotify mobile app that aims to declutter search results by deduplicating similar recordings of a single song.",
       "I also led multiple rounds of user research to inform the designs.",
@@ -61,6 +66,7 @@ const projects: {
   {
     id: 5,
     title: "Spotify x Motorola Razr Cover Screen",
+    date: 2024,
     description: [
       "In 2024, Motorola planned to launch a larger Motorola Razr device. With that release, Spotify and Motorola partnered to deliver a new Spotify experience for the cover screen (the screen you see while the phone is folded closed).",
       "In this project, I led the design of the new UI that brought a new layout and new Spotify features to the cover screen like DJ mode and a new queue.",
@@ -70,6 +76,7 @@ const projects: {
   {
     id: 6,
     title: "MyToast Mobile App",
+    date: 2022,
     description: [
       "I was the lead designer for the first version of Toast's first mobile app for iOS and Android called MyToast. The app enabled restaurant employees to get access to their paychecks earlier than normal. As the first designer, I designed onboarding flows, withdrawal flows, paycheck visualizations, settings, legal disclaimers, and even app store marketing assets.",
       "Today, the app has 4.7 stars on the Apple App Store.",
@@ -184,6 +191,7 @@ export default function Home() {
                   ) : (
                     <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{project.description}</p>
                   )}
+                  <p className="text-sm text-gray-500 dark:text-gray-500 mt-4">{project.date}</p>
                 </div>
 
                 {/* Right: images or gray placeholders */}
