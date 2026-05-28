@@ -148,7 +148,7 @@ export default function Home() {
             </p>
           )}
           {view === "about" && (
-            <div className="flex flex-col gap-5 text-gray-600 dark:text-gray-400 leading-relaxed max-w-[650px] mr-auto text-lg">
+            <div className="flex flex-col gap-5 text-gray-600 dark:text-gray-400 leading-relaxed max-w-[674px] mr-auto text-lg">
               <img src="/images/newportnew.jpg" alt="Steven Bruno" className="w-64 rounded-sm mb-8" />
               <p>My name is Steven Bruno. I'm a digital product designer that grew up in Los Angeles, studied in Chicago, and am now living in Brooklyn.</p>
               <p>I originally studied Civil Engineering as I planned to pursue a career in Architecture. Along the way, I discovered my passion for digital product design, and I've pursued this career ever since.</p>
