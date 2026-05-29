@@ -27,12 +27,12 @@ html {
 
 /* Dark mode — triggered by .dark class on <html> */
 html.dark {
-  background-color: #0d0d0d;
+  background-color: #141414;
   scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
 }
 
 html.dark body {
-  background: radial-gradient(ellipse at 62% 75%, #131313 0%, #0d0d0d 80%);
+  background: radial-gradient(ellipse at 62% 75%, #1a1a1a 0%, #141414 80%);
   background-attachment: fixed;
 }
 
