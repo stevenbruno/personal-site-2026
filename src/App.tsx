@@ -46,7 +46,7 @@ function Layout() {
   return (
     <div className="min-h-screen bg-white dark:bg-transparent text-gray-900 dark:text-white">
       {/* Dark mode toggle — pill switch */}
-      <div className="hidden md:block max-w-[1180px] mx-auto px-8 pt-5">
+      <div className="hidden md:block max-w-[1400px] mx-auto px-8 pt-5">
         <div className="flex justify-end">
         <div
           onClick={() => setDark(!dark)}

@@ -138,7 +138,7 @@ export default function Home() {
       </nav>
 
       {/* Intro section — bio left, nav right */}
-      <section className="max-w-[1180px] mx-auto px-8 pt-48 pb-48">
+      <section className="max-w-[1400px] mx-auto px-8 pt-48 pb-48">
         <div className="flex items-start gap-16">
           {view === "projects" && (
             <p className="text-lg leading-relaxed text-gray-900 dark:text-white max-w-[500px] mr-auto">
@@ -179,7 +179,7 @@ export default function Home() {
       {view === "projects" ? (
         projects.map((project) => (
           <section key={project.id} className="border-t border-gray-200 dark:border-gray-800">
-            <div className="max-w-[1180px] mx-auto px-8 py-24">
+            <div className="max-w-[1400px] mx-auto px-8 py-24">
               <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
                 {/* Left: title + description — sticky on desktop */}
                 <div className="shrink-0 md:w-1/3 md:sticky md:top-16">
