@@ -150,9 +150,9 @@ export default function Home() {
           )}
           {view === "about" && (
             <div className="flex flex-col gap-5 text-gray-600 dark:text-gray-400 leading-relaxed max-w-[674px] mr-auto text-lg">
-              <p>My name is Steven Bruno. I'm a digital product designer that grew up in Los Angeles, studied in Chicago, and am now living in Brooklyn.</p>
+              <p>My name is Steven Bruno. I'm a digital product designer who grew up in Los Angeles, studied in Chicago, and now live in Brooklyn.</p>
               <p>I originally studied Civil Engineering as I planned to pursue a career in Architecture. Along the way, I discovered my passion for digital product design, and I've pursued this career ever since.</p>
-              <p>Currently, I work with an incredibly talented team to help design and build the Spotify mobile app. I also am a lead course author and instructor for internal Spotify trainings like 'Advanced Prototyping in Figma' and 'Prototyping with Claude Code'. Previously, I worked at a restaurant technology company called Toast. You might see some of their hardware inside your favorite restaurants.</p>
+              <p>Currently, I work with an incredibly talented team to help design and build the Spotify mobile app. I'm also a lead course creator for internal Spotify trainings like 'Advanced Prototyping in Figma' and 'Prototyping with Claude Code'. Previously, I worked at a restaurant technology company called Toast.</p>
               <p>Outside of work, I love to make music and spend as much time outside as possible.</p>
               <p>I built this site with Claude Code, React, Typescript, and TailwindCSS.</p>
               <a href="https://www.linkedin.com/in/stevenjbruno/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:opacity-70 transition-opacity duration-150">LinkedIn</a>
