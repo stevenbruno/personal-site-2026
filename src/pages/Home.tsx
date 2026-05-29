@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-type ProjectImage = { src: string };
+type ProjectImage = { src: string; style?: React.CSSProperties };
 
 const projects: {
   id: number;
@@ -19,7 +19,7 @@ const projects: {
       "In this code-first design project, I used Claude Code to define a new advanced filtering tool for Spotify Search.",
     ],
     images: [
-      { src: "/images/newphotos/filters-newer-1.png" },
+      { src: "/images/newphotos/filters-newer-1.png", style: { marginBottom: "8px" } },
       { src: "/images/newphotos/filters-newer-2.png" },
     ],
   },
@@ -73,7 +73,7 @@ const projects: {
       "Today, the app has 4.7 stars on the Apple App Store.",
     ],
     images: [
-      { src: "/images/newphotos/mytoast-1.jpg" },
+      { src: "/images/newphotos/mytoast-1.jpg", style: { clipPath: "inset(0 0 2px 0)", marginBottom: "8px" } },
       { src: "/images/newphotos/mytoast-2.jpg" },
     ],
   },
@@ -205,14 +205,14 @@ export default function Home() {
                       return chunks.map((chunk, ci) => (
                         <div key={ci} className="flex flex-row gap-4">
                           {chunk.map((img, ii) => (
-                            <img key={ii} src={img.src} alt="" className="flex-1 min-w-0 w-0 h-auto cursor-pointer" onClick={() => setLightboxSrc(img.src)} />
+                            <img key={ii} src={img.src} alt="" className="flex-1 min-w-0 w-0 h-auto cursor-pointer" style={img.style} onClick={() => setLightboxSrc(img.src)} />
                           ))}
                         </div>
                       ));
                     })()
                   ) : (
                     project.images.map((img, i) => (
-                      <img key={i} src={img.src} alt="" className="w-full h-auto cursor-pointer" onClick={() => setLightboxSrc(img.src)} />
+                      <img key={i} src={img.src} alt="" className="w-full h-auto cursor-pointer" style={img.style} onClick={() => setLightboxSrc(img.src)} />
                     ))
                   )}
                 </div>
