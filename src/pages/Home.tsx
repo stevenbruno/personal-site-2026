@@ -15,7 +15,7 @@ const projects: {
     title: "Spotify Smart Search Filters",
     date: 2026,
     description: [
-      "As Spotify expanded it's content offerings, we needed a new way to enable users to more efficiently find content that fit whatever niche they might be seeking.",
+      "When Spotify expanded it's content offerings, it needed a way to enable users to more efficiently find content that fit whatever niche they might be seeking.",
       "In this code-first design project, I used Claude Code to define a new advanced filtering tool for Spotify Search.",
     ],
     images: [
@@ -39,6 +39,7 @@ const projects: {
     date: 2026,
     description: [
       "I led the design of an internal tool that allows Spotify teammates to better understand why and how external users converse with the new Spotify conversational DJ.",
+      "In this project, I designed and developed a message classification system, various analysis visualizations, and an llm-powered chatbot that enabled internal users to ask questions of the data.",
       "I built this site with Claude Code using React and Typescript.",
     ],
     images: [{ src: "/images/newphotos/convo-analysis-newer-1.png" }],
@@ -142,13 +143,13 @@ export default function Home() {
           )}
           {view === "about" && (
             <div className="flex flex-col gap-5 text-gray-600 dark:text-gray-400 leading-relaxed max-w-[674px] mr-auto text-lg">
-              <img src="/images/newportnew.jpg" alt="Steven Bruno" className="w-64 rounded-sm mb-8" />
               <p>My name is Steven Bruno. I'm a digital product designer that grew up in Los Angeles, studied in Chicago, and am now living in Brooklyn.</p>
               <p>I originally studied Civil Engineering as I planned to pursue a career in Architecture. Along the way, I discovered my passion for digital product design, and I've pursued this career ever since.</p>
               <p>Currently, I work with an incredibly talented team to help design and build the Spotify mobile app. I also am a lead course author and instructor for internal Spotify trainings like 'Advanced Prototyping in Figma' and 'Prototyping with Claude Code'. Previously, I worked at a restaurant technology company called Toast. You might see some of their hardware inside your favorite restaurants.</p>
               <p>Outside of work, I love to make music and spend as much time outside as possible.</p>
               <p>I built this site with Claude Code, React, Typescript, and TailwindCSS.</p>
-              <a href="https://www.linkedin.com/in/stevenjbruno/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:opacity-70 transition-opacity duration-150 font-medium">LinkedIn</a>
+              <a href="https://www.linkedin.com/in/stevenjbruno/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:opacity-70 transition-opacity duration-150">LinkedIn</a>
+              <img src="/images/newportnew.jpg" alt="Steven Bruno" className="w-64 rounded-sm mt-3" />
             </div>
           )}
 
