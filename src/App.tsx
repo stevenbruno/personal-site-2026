@@ -42,13 +42,6 @@ function useDarkMode() {
 
 function Layout() {
   const [dark, setDark] = useDarkMode();
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 100);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
     <div className="min-h-screen bg-white dark:bg-transparent text-gray-900 dark:text-white">
@@ -93,20 +86,6 @@ function Layout() {
         </Routes>
       </main>
 
-      {/* Scroll to top */}
-      <button
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        aria-label="Scroll to top"
-        className={`fixed bottom-6 right-8 z-50 flex items-center gap-1.5 px-4 py-2 text-xs font-medium rounded-full bg-gray-500 dark:bg-gray-200 text-white dark:text-gray-900 border border-gray-500/60 dark:border-gray-200/60 hover:bg-gray-600 dark:hover:bg-gray-100 shadow-md transition-all duration-300 ${
-          scrolled ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"
-        }`}
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <line x1="12" y1="19" x2="12" y2="5" />
-          <polyline points="5 12 12 5 19 12" />
-        </svg>
-        Back to top
-      </button>
     </div>
   );
 }
