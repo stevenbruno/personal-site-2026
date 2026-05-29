@@ -29,7 +29,7 @@ const projects: {
     date: 2026,
     description: [
       "I co-lead the design of the future of agentic search within Spotify.",
-      "This is a confidential project. A case can be made available upon request.",
+      "This is a confidential project. A case study can be made available upon request.",
     ],
     images: [{ src: "/images/newphotos/agentic-search-newer-1.png" }],
   },
