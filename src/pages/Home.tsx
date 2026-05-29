@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-type ProjectImage = { src: string; type: "full" | "phone"; uncropped?: boolean };
+type ProjectImage = { src: string };
 
 const projects: {
   id: number;
@@ -9,10 +9,6 @@ const projects: {
   date: number;
   images: ProjectImage[];
   columns?: number;
-  phoneContainerHeight?: string;
-  phoneHeight?: string;
-  confidential?: boolean;
-  imageShadow?: boolean;
 }[] = [
   {
     id: 1,
@@ -23,8 +19,8 @@ const projects: {
       "In this code-first design project, I used Claude Code to define a new advanced filtering tool for Spotify Search.",
     ],
     images: [
-      { src: "/images/filters1.png", type: "full", uncropped: true },
-      { src: "/images/filters2.png", type: "full", uncropped: true },
+      { src: "/images/newphotos/filters-newer-1.png" },
+      { src: "/images/newphotos/filters-newer-2.png" },
     ],
   },
   {
@@ -35,8 +31,7 @@ const projects: {
       "I co-lead the design of the future of agentic search within Spotify.",
       "This is a confidential project. A case can be made available upon request.",
     ],
-    images: [{ src: "/images/confidential.png", type: "phone" }],
-    phoneContainerHeight: "h-[520px]",
+    images: [{ src: "/images/newphotos/agentic-search-newer-1.png" }],
   },
   {
     id: 3,
@@ -46,7 +41,7 @@ const projects: {
       "I led the design of an internal tool that allows Spotify teammates to better understand why and how external users converse with the new Spotify conversational DJ.",
       "I built this site with Claude Code using React and Typescript.",
     ],
-    images: [{ src: "/images/convoanalysis.png", type: "full", uncropped: true }],
+    images: [{ src: "/images/newphotos/convo-analysis-newer-1.png" }],
   },
   {
     id: 4,
@@ -56,12 +51,7 @@ const projects: {
       "I led the design of a feature in the Spotify mobile app that aims to declutter search results by deduplicating similar recordings of a single song.",
       "I also led multiple rounds of user research to inform the designs.",
     ],
-    images: [
-      { src: "/images/duplication501.png", type: "phone" },
-      { src: "/images/duplication502.png", type: "phone" },
-    ],
-    columns: 2,
-    imageShadow: true,
+    images: [{ src: "/images/newphotos/deduplication-1.jpg" }],
   },
   {
     id: 5,
@@ -71,7 +61,7 @@ const projects: {
       "In 2024, Motorola planned to launch a larger Motorola Razr device. With that release, Spotify and Motorola partnered to deliver a new Spotify experience for the cover screen (the screen you see while the phone is folded closed).",
       "In this project, I led the design of the new UI that brought a new layout and new Spotify features to the cover screen like DJ mode and a new queue.",
     ],
-    images: [{ src: "/images/razr.png", type: "phone" }],
+    images: [{ src: "/images/newphotos/razr-1.jpg" }],
   },
   {
     id: 6,
@@ -82,13 +72,16 @@ const projects: {
       "Today, the app has 4.7 stars on the Apple App Store.",
     ],
     images: [
-      { src: "/images/mytoast2.png", type: "phone" },
-      { src: "/images/mytoast3.png", type: "phone" },
-      { src: "/images/mytoast4.png", type: "phone" },
-      { src: "/images/mytoast1.png", type: "phone" },
+      { src: "/images/newphotos/mytoast-1.jpg" },
+      { src: "/images/newphotos/mytoast-2.jpg" },
     ],
-    columns: 2,
-    phoneHeight: "max-h-[620px] w-auto",
+  },
+  {
+    id: 7,
+    title: "Toast Payroll Process Redesign",
+    date: 2022,
+    description: "In 2021, Toast wanted to redesign their software tool for restaurant payroll management. This was a flagship feature upon which an entire line of Toast business was built. But for users, the feature was confusing, time-consuming, and easy to mess up. I co-led a redesign that made the payroll process more streamlined and led to significant user time savings.",
+    images: [{ src: "/images/newphotos/payroll-newer-1.png" }],
   },
 ];
 
@@ -195,45 +188,25 @@ export default function Home() {
                   <p className="text-sm text-gray-500 dark:text-gray-500 mt-4">{project.date}</p>
                 </div>
 
-                {/* Right: images or gray placeholders */}
-                <div className="flex-1 flex flex-col">
-                  {(() => {
-                    const { images } = project;
-
-                    if (project.columns === 2) {
+                {/* Right: images */}
+                <div className="flex-1 flex flex-col gap-4">
+                  {project.columns === 2 ? (
+                    (() => {
                       const chunks: ProjectImage[][] = [];
-                      for (let i = 0; i < images.length; i += 2) chunks.push(images.slice(i, i + 2));
-                      return <div className="flex flex-col gap-2">{chunks.map((chunk, ci) => (
-                        <div key={ci} className="rounded-2xl w-full flex flex-row items-center justify-center px-8 gap-6">
+                      for (let i = 0; i < project.images.length; i += 2) chunks.push(project.images.slice(i, i + 2));
+                      return chunks.map((chunk, ci) => (
+                        <div key={ci} className="flex flex-row gap-4">
                           {chunk.map((img, ii) => (
-                            <div key={ii} className="flex-1 flex items-center justify-center min-w-0 cursor-pointer" onClick={() => setLightboxSrc(img.src)}>
-                              <img
-                                src={img.src}
-                                alt=""
-                                className={`${project.phoneHeight ?? "h-[666px]"} max-w-full object-contain${project.imageShadow ? " [filter:drop-shadow(0_12px_16px_rgba(0,0,0,0.55))]" : ""}`}
-                              />
-                            </div>
+                            <img key={ii} src={img.src} alt="" className="flex-1 min-w-0 w-0 h-auto cursor-pointer" onClick={() => setLightboxSrc(img.src)} />
                           ))}
                         </div>
-                      ))}</div>;
-                    }
-
-                    // Default: one image per row
-                    const aspectClass = images.length === 1 ? "aspect-[16/10]" : "aspect-square";
-                    return images.map((img, i) =>
-                      img.type === "full" && img.uncropped ? (
-                        <img key={i} src={img.src} alt="" className="w-full h-auto rounded-2xl cursor-pointer" style={{ maskImage: "linear-gradient(to right, transparent, black 8px, black calc(100% - 8px), transparent), linear-gradient(to bottom, black calc(100% - 8px), transparent 100%)", WebkitMaskImage: "linear-gradient(to right, transparent, black 8px, black calc(100% - 8px), transparent), linear-gradient(to bottom, black calc(100% - 8px), transparent 100%)", maskComposite: "intersect", WebkitMaskComposite: "source-in" }} onClick={() => setLightboxSrc(img.src)} />
-                      ) : img.type === "full" ? (
-                        <div key={i} className={`rounded-2xl overflow-hidden w-full ${aspectClass} cursor-pointer`} onClick={() => setLightboxSrc(img.src)}>
-                          <img src={img.src} alt="" className="w-full h-full object-cover" />
-                        </div>
-                      ) : (
-                        <div key={i} className={`rounded-2xl w-full ${project.phoneContainerHeight ?? "h-[666px]"} flex items-center justify-center p-8 cursor-pointer`} onClick={() => setLightboxSrc(img.src)}>
-                          <img src={img.src} alt="" className={`${project.phoneHeight ?? "h-[666px]"} max-w-full object-contain`} />
-                        </div>
-                      )
-                    );
-                  })()}
+                      ));
+                    })()
+                  ) : (
+                    project.images.map((img, i) => (
+                      <img key={i} src={img.src} alt="" className="w-full h-auto cursor-pointer" onClick={() => setLightboxSrc(img.src)} />
+                    ))
+                  )}
                 </div>
               </div>
             </div>
@@ -243,23 +216,23 @@ export default function Home() {
 
       {/* Lightbox overlay */}
       {lightboxSrc && (
-        <div
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-8"
-          onClick={() => setLightboxSrc(null)}
-        >
+        <>
+          <div className="fixed inset-0 z-50 bg-black" onClick={() => setLightboxSrc(null)} />
+          <div className="fixed inset-0 z-[51] flex items-center justify-center p-8 pointer-events-none">
+            <img
+              src={lightboxSrc}
+              alt=""
+              className="max-w-full max-h-full object-contain pointer-events-auto"
+              onClick={() => setLightboxSrc(null)}
+            />
+          </div>
           <button
-            className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors text-3xl leading-none"
+            className="fixed top-6 right-6 z-[51] text-white/70 hover:text-white transition-colors text-3xl leading-none"
             onClick={() => setLightboxSrc(null)}
           >
             ✕
           </button>
-          <img
-            src={lightboxSrc}
-            alt=""
-            className="max-w-full max-h-full object-contain rounded-xl"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
+        </>
       )}
     </div>
   );
