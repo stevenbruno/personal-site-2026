@@ -15,8 +15,8 @@ const projects: {
     title: "Spotify Smart Search Filters",
     date: 2026,
     description: [
-      "When Spotify expanded it's content offerings, it needed a way to enable users to more efficiently find content that fit whatever niche they might be seeking.",
-      "In this code-first design project, I used Claude Code to define a new advanced filtering tool for Spotify Search.",
+      "In the years leading up to 2026, Spotify invested heavily in expanding it's content offerings. It grew from an app focused on music into an app offering podcasts, audiobooks, music videos, courses, concert tickets, and even fitness videos. I was tasked with designing a search experience that enabled users to find their target content and perhaps discover new content along the way.",
+      "In this code-first design project, I used Claude Code to define a new advanced filtering tool for Spotify Search. As of May 2026, this project is undergoing active testing.",
     ],
     images: [
       { src: "/images/newphotos/filters-newer-1.png", style: { marginBottom: "8px" } },
