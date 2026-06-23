@@ -11,6 +11,16 @@ const projects: {
   columns?: number;
 }[] = [
   {
+    id: 8,
+    title: "Spotify Search Rows",
+    date: 2026,
+    description: [
+      "Throughout 2025 and 2026, I led design for the Search product area on the Spotify mobile app. In that time, I oversaw and designed the distribution of each new content vertical that Spotify made available for users, from mixed playlists, to audiobooks, to music videos, to podcast videos, and everything in between.",
+      "In this work, the team and I worked to balance business goals across distribution, retrieval, engagement, education, and discovery.",
+    ],
+    images: [{ src: "/images/Distribution.png" }],
+  },
+  {
     id: 1,
     title: "Spotify Smart Search Filters",
     date: 2026,
@@ -19,8 +29,8 @@ const projects: {
       "In this code-first design project, I used Claude Code to define a new advanced filtering tool for Spotify Search. As of May 2026, this project is undergoing active testing.",
     ],
     images: [
-      { src: "/images/newphotos/filters-newer-1.png", style: { marginBottom: "8px" } },
-      { src: "/images/newphotos/filters-newer-2.png" },
+      { src: "/images/filters-newer-1.png", style: { marginBottom: "8px" } },
+      { src: "/images/filters-newer-2.png" },
     ],
   },
   {
@@ -31,7 +41,7 @@ const projects: {
       "I co-lead the design of the future of agentic search within Spotify.",
       "This is a confidential project. A case study can be made available upon request.",
     ],
-    images: [{ src: "/images/newphotos/agentic-search-newer-1.png" }],
+    images: [{ src: "/images/agentic-search-newer-1.png" }],
   },
   {
     id: 3,
@@ -42,7 +52,7 @@ const projects: {
       "In this project, I designed and developed a message classification system, various analysis visualizations, and an llm-powered chatbot that enabled internal users to ask questions of the data.",
       "I built this site with Claude Code using React and Typescript.",
     ],
-    images: [{ src: "/images/newphotos/convo-analysis-newer-1.png" }],
+    images: [{ src: "/images/convo-analysis-newer-1.png" }],
   },
   {
     id: 4,
@@ -52,7 +62,7 @@ const projects: {
       "I led the design of a feature in the Spotify mobile app that aims to declutter search results by deduplicating similar recordings of a single song.",
       "I also led multiple rounds of user research to inform the designs.",
     ],
-    images: [{ src: "/images/newphotos/deduplication-1.jpg" }],
+    images: [{ src: "/images/deduplication-1.jpg" }],
   },
   {
     id: 5,
@@ -62,7 +72,7 @@ const projects: {
       "In 2024, Motorola planned to launch a larger Motorola Razr device. With that release, Spotify and Motorola partnered to deliver a new Spotify experience for the cover screen (the screen you see while the phone is folded closed).",
       "In this project, I led the design of the new UI that brought a new layout and new Spotify features to the cover screen like DJ mode and a new queue.",
     ],
-    images: [{ src: "/images/newphotos/razr-1.jpg" }],
+    images: [{ src: "/images/razr-1.jpg" }],
   },
   {
     id: 6,
@@ -73,8 +83,8 @@ const projects: {
       "Today, the app has 4.7 stars on the Apple App Store.",
     ],
     images: [
-      { src: "/images/newphotos/mytoast-1.jpg", style: { clipPath: "inset(0 0 2px 0)", marginBottom: "8px" } },
-      { src: "/images/newphotos/mytoast-2.jpg" },
+      { src: "/images/mytoast-1.jpg", style: { clipPath: "inset(0 0 2px 0)", marginBottom: "8px" } },
+      { src: "/images/mytoast-2.jpg" },
     ],
   },
   {
@@ -82,7 +92,7 @@ const projects: {
     title: "Toast Payroll Process Redesign",
     date: 2022,
     description: "In 2021, Toast wanted to redesign their software tool for restaurant payroll management. This was a flagship feature upon which an entire line of Toast business was built. But for users, the feature was confusing, time-consuming, and easy to mess up. I co-led a redesign that made the payroll process more streamlined and led to significant user time savings.",
-    images: [{ src: "/images/newphotos/payroll-newer-1.png" }],
+    images: [{ src: "/images/payroll-newer-1.png" }],
   },
 ];
 
