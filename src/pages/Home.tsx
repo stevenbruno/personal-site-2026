@@ -162,8 +162,8 @@ export default function Home() {
             <div className="flex flex-col gap-5 text-gray-600 dark:text-gray-400 leading-relaxed max-w-[674px] mr-auto text-lg">
               <p>My name is Steven Bruno. I'm a digital product designer living in Brooklyn.</p>
               <p>I grew up in Los Angeles and then moved to Chicago to study Civil Engineering. At the time, I planned on pursuing a career in Architecture. Along the way, I discovered my passion for digital product design, and I've pursued this career ever since.</p>
-              <p>Currently, I work with an incredibly talented team to help design and build the Spotify mobile app. I'm also a lead course creator for internal Spotify trainings like 'Advanced Prototyping in Figma' and 'Prototyping with Claude Code'. Previously, I worked at a restaurant technology company called Toast.</p>
-              <p>Outside of work, I love to make music and spend as much time outside as possible.</p>
+              <p>Currently, I work with an incredibly talented team to help design and build the Spotify mobile app. Previously, I worked at Toast, a restaurant technology company.</p>
+              <p>Outside of work, I love to make music, play soccer, paint, and surf.</p>
               <p>I built this site with Claude Code, React, Typescript, and TailwindCSS.</p>
               <a href="https://www.linkedin.com/in/stevenjbruno/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:opacity-70 transition-opacity duration-150">LinkedIn</a>
               <img src="/images/newportnew.jpg" alt="Steven Bruno" className="w-64 rounded-sm mt-3" />
