@@ -98,6 +98,28 @@ const projects: {
 
 type View = "projects" | "about";
 
+function ExternalLinkIcon({ size }: { size: number }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className="relative top-px shrink-0"
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 554 554"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="52"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M225 26H69a43 43 0 0 0-43 43v416a43 43 0 0 0 43 43h416a43 43 0 0 0 43-43V328" />
+      <path d="M355 26h173v173" />
+      <path d="m225 328 303-302" />
+    </svg>
+  );
+}
+
 export default function Home() {
   const [view, setView] = useState<View>("projects");
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
@@ -141,7 +163,8 @@ export default function Home() {
           <button onClick={() => setView("about")} className={tabItemClass(view === "about")}>
             About
           </button>
-          <a href="https://soundcloud.com/sbruno636" target="_blank" rel="noopener noreferrer" className={tabItemClass(false)}>
+          <a href="https://soundcloud.com/sbruno636" target="_blank" rel="noopener noreferrer" className={`${tabItemClass(false)} inline-flex items-center gap-1`}>
+            <ExternalLinkIcon size={11} />
             Music
           </a>
         </div>
@@ -178,7 +201,8 @@ export default function Home() {
             <button onClick={() => setView("about")} className={navItemClass(view === "about")}>
               About
             </button>
-            <a href="https://soundcloud.com/sbruno636" target="_blank" rel="noopener noreferrer" className={navItemClass(false)}>
+            <a href="https://soundcloud.com/sbruno636" target="_blank" rel="noopener noreferrer" className={`${navItemClass(false)} inline-flex items-center justify-end gap-1`}>
+              <ExternalLinkIcon size={14} />
               Music
             </a>
           </nav>
