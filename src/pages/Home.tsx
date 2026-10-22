@@ -124,6 +124,7 @@ export default function Home() {
   const [view, setView] = useState<View>("projects");
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [aboutImgLoaded, setAboutImgLoaded] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 100);
@@ -189,7 +190,15 @@ export default function Home() {
               <p>Outside of work, I love to make music, play soccer, paint, and surf.</p>
               <p>I built this site with Claude Code, React, Typescript, and TailwindCSS.</p>
               <a href="https://www.linkedin.com/in/stevenjbruno/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:opacity-70 transition-opacity duration-150">LinkedIn</a>
-              <img src="/images/newportnew.jpg" alt="Steven Bruno" className="w-64 rounded-sm mt-3" />
+              <img
+                ref={(node) => { if (node?.complete) setAboutImgLoaded(true); }}
+                src="/images/newportnew.jpg"
+                alt="Steven Bruno"
+                width={3406}
+                height={3716}
+                onLoad={() => setAboutImgLoaded(true)}
+                className={`w-64 aspect-[3406/3716] rounded-sm mt-3 bg-gray-100 dark:bg-gray-800 transition-opacity duration-500 ${aboutImgLoaded ? "opacity-100" : "opacity-0"}`}
+              />
             </div>
           )}
 
