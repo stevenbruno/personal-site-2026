@@ -80,7 +80,7 @@ const projects: {
     date: 2022,
     description: [
       "I was the lead designer for the first version of Toast's first mobile app for iOS and Android called MyToast. The app enabled restaurant employees to get access to their paychecks earlier than normal. As the first designer, I designed onboarding flows, withdrawal flows, paycheck visualizations, settings, legal disclaimers, and even app store marketing assets.",
-      "Today, the app has 4.7 stars on the Apple App Store.",
+      "Today, the app has 4.8 stars on the Apple App Store.",
     ],
     images: [
       { src: "/images/mytoast-1.jpg", style: { clipPath: "inset(0 0 2px 0)", marginBottom: "8px" } },
