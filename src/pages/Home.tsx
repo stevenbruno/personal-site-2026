@@ -12,11 +12,11 @@ const projects: {
 }[] = [
   {
     id: 8,
-    title: "Spotify Search Rows",
+    title: "Spotify Search Experience",
     date: 2026,
     description: [
-      "Throughout 2025 and 2026, I led design for the Search product area on the Spotify mobile app. In that time, I oversaw and designed the distribution of each new content vertical that Spotify made available for users, from mixed playlists, to audiobooks, to music videos, to podcast videos, and everything in between.",
-      "In this work, the team and I worked to balance business goals across distribution, retrieval, engagement, education, and discovery.",
+      "I currently lead design for the Search product area on the Spotify mobile app. In this role, I oversee and design the distribution of each new content vertical that Spotify makes available for users, from mixed playlists, to audiobooks, to music videos, to podcast videos, and everything in between.",
+      "In this work, the team and I work to balance business goals across distribution, retrieval, engagement, education, and discovery.",
     ],
     images: [{ src: "/images/Distribution.png" }],
   },
